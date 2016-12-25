@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>673</width>
-    <height>466</height>
+    <width>842</width>
+    <height>607</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,13 +23,19 @@
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="sizeConstraint">
-         <enum>QLayout::SetMaximumSize</enum>
+         <enum>QLayout::SetMinAndMaxSize</enum>
         </property>
         <item>
          <widget class="QGroupBox" name="basicSetting">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
-            <width>170</width>
+            <width>200</width>
             <height>16777215</height>
            </size>
           </property>
@@ -68,7 +74,7 @@
             <widget class="QPushButton" name="serialPortSwitch">
              <property name="maximumSize">
               <size>
-               <width>150</width>
+               <width>16777215</width>
                <height>16777215</height>
               </size>
              </property>
@@ -191,9 +197,15 @@
         </item>
         <item>
          <widget class="QGroupBox" name="extraSetting">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
-            <width>170</width>
+            <width>200</width>
             <height>16777215</height>
            </size>
           </property>
@@ -387,8 +399,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>673</width>
-     <height>23</height>
+     <width>842</width>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_F">
