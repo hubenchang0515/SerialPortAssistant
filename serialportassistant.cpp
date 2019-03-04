@@ -38,7 +38,7 @@ void SerialPortAssistant::initSerialPortSetting(void)
     }
     if(ui->serialPortNumber->count() == 0)
     {
-        ui->serialPortNumber->addItem(tr("没有可用串口"));
+        ui->serialPortNumber->addItem(tr("NULL"));
         ui->serialPortSwitch->setEnabled(false);
     }
 
