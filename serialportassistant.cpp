@@ -186,34 +186,34 @@ void SerialPortAssistant::switchSerialPort(void)
 void SerialPortAssistant::receive(void)
 {
     /* Receive data. */
-    QString data = port->readAll();
+    QByteArray data = port->readAll();
+    QString display;
 
     /* Convert data to hexadecimal. */
     if(ui->hexadecimaleReceive->isChecked())
     {
         QString temp;
-        const char* str = data.toStdString().c_str();
-        for(int i=0;i<qstrlen(str);i++)
+        for(int i=0; i < data.size(); i++)
         {
-            temp.sprintf("%s %02x",temp.toStdString().c_str(),str[i]);
+            temp.sprintf("%02x ",(unsigned char)data.at(i));
+            display += temp;
         }
-        data = temp;
     }
 
     /* Add time to show. */
     if(ui->showTime->isChecked())
     {
         QDateTime time = QDateTime::currentDateTime();
-        data = time.toString("yyyy-MM-dd hh:mm:ss") + " : " + data;
+        display = time.toString("yyyy-MM-dd hh:mm:ss") + " : " + display;
     }
     /* Add newline to show. */
     if(ui->autoNewLine->isChecked())
     {
-        data += "\n";
+        display += "\n";
     }
 
     /* Show the data received. */
-    insertDataDisplay(data,ui->doubleColor->isChecked() ? Qt::blue : Qt::black);
+    insertDataDisplay(display,ui->doubleColor->isChecked() ? Qt::blue : Qt::black);
 }
 
 /* Start send. */
