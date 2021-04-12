@@ -199,6 +199,10 @@ void SerialPortAssistant::receive(void)
             display += temp;
         }
     }
+    else
+    {
+        display = data;
+    }
 
     /* Add time to show. */
     if(ui->showTime->isChecked())
