@@ -195,7 +195,7 @@ void SerialPortAssistant::receive(void)
         QString temp;
         for(int i=0; i < data.size(); i++)
         {
-            temp.sprintf("%02x ",(unsigned char)data.at(i));
+            temp.sprintf("%02X ",(unsigned char)data.at(i));
             display += temp;
         }
     }
@@ -279,21 +279,21 @@ void SerialPortAssistant::transmitHexadecimal(void)
 {
     /* Check if the data is splited by withspace every 2 characters. */
     QString data = ui->dataToSend->toPlainText();
-    QRegExp regExp(" *([0-9A-Fa-f]{2} +)+[0-9A-Fa-f]{2} *");
+    QRegExp regExp(" *([0-9A-Fa-f]{2} +)*[0-9A-Fa-f]{2} *");
     if(regExp.exactMatch(data))
     {
         /* Convert every 2 characters to hexadecimal. */
         QStringList dataList = data.split(QRegExp(" +"));
-        QString newData,showData;
+        QString showData;
+        QByteArray newData;
         foreach(const QString& i, dataList)
         {
             showData += i + " ";
-            int n = i.toInt(0,16);
-            newData += data.sprintf("%c",static_cast<char>(n));
+            newData += i.toInt(0,16);
         }
 
         /* Transmit data. */
-        if(port->write(newData.toStdString().c_str()) == -1)
+        if(port->write(newData) == -1)
         {
             statusBar()->showMessage("Send data failed : "+ port->errorString());
             return;
