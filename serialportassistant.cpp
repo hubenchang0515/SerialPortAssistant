@@ -1,5 +1,6 @@
 #include "serialportassistant.h"
 #include "ui_serialportassistant.h"
+#include <QListView>
 
 SerialPortAssistant::SerialPortAssistant(QWidget *parent) :
     QMainWindow(parent),
@@ -15,6 +16,20 @@ SerialPortAssistant::SerialPortAssistant(QWidget *parent) :
     ui->times->setValidator(new QIntValidator(0, 10000, this));
     initSerialPortSetting();
     connections();
+
+    QFile file(":/theme/Flat_Dark_Cyan_Indigo.qss");
+    file.open(QFile::ReadOnly);
+    setStyleSheet(file.readAll());
+    ui->serialPortSwitch->setProperty("color", "Primary");
+    ui->sendFile->setProperty("color", "Primary");
+    ui->clear->setProperty("color", "Secondary");
+    ui->send->setProperty("color", "Primary");
+    ui->serialPortNumber->setView(new QListView);
+    ui->baudRate->setView(new QListView);
+    ui->dataBits->setView(new QListView);
+    ui->parity->setView(new QListView);
+    ui->stopBits->setView(new QListView);
+
 
 #ifdef DEBUG
     test();

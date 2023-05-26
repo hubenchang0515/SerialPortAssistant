@@ -24,4 +24,4 @@ FORMS    += serialportassistant.ui
 CONFIG += c++11
 
 RESOURCES += \
-    rsc.qrc
+    resource/resource.qrc
